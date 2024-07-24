@@ -1,0 +1,44 @@
+npm init -y
+npm install nodemon --save-dev
+pasta src:
+index.js
+package.json:
+"scripts": {
+    "start:dev": "nodemon src/index.js"
+  }
+
+  bibliotecas:
+  npm install express
+  sequelize 
+  pg .....pghstore
+  bcryptjs
+  cors
+jsonwebtoken
+
+sequelizerc:
+COPIAR DO PROJETO semna 08
+
+comando para criar pastas (npx sequelize-cli init)
+ OU criar manualmente
+
+ .gitignore (node_modules e .env)
+
+
+-- criar o: .env
+ --------
+ "Preenchimento de arquivos":
+
+ configurar banco de dados:
+ -database.config --> copiar algo pronto
+
+ -configurar o .env
+
+ criar arquivo connection, dentro da pasta database
+ ("instancia" uma nova conexao passando como parâmetros a database.config)
+
+ --PASTA SRC:
+ -criar INDEX.JS (importa SERVER e "instancia" SERVER)  e SERVER.JS(fazer todas configurações)
+
+ + a pasta routes
+ + a pasta middlewares
+ + a pasta controllers
