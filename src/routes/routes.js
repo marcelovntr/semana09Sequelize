@@ -14,6 +14,7 @@ routes.get('/', (request, response)=>{response.send('Sea Bienvenido')})
 routes.use('/usuario', usuariosRoutes)
 routes.post('/login', LoginController.login)
 
+//validação de token aplicada à cada rota:
 routes.use('/livros', auth, livrosRoutes)
 routes.use('/leitores', auth, leitoresRoutes)
 routes.use('/instrumentos', auth, instrumentosRoutes)
