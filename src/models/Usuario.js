@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
 
-const Usuario = connection.define("usuarios", {
+const Usuario = connection.define("usuarios", { //<-- apenas subindo o código do modelo
   nome: {
     type: DataTypes.STRING(150),
     allowNull: false,
