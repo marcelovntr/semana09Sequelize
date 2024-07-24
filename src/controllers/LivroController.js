@@ -10,6 +10,7 @@ class LivroController {
 
         response.status(201).json(livroSalvo)
     } catch (error) {
+      console.log(error)
         response.status(500).json({ mensagem: "Erro ao cadastrar livro!" })
     }
    

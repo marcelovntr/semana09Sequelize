@@ -15,7 +15,7 @@ const Usuario = connection.define("usuarios", { //<-- apenas subindo o código d
   },
   senha: {
     allowNull: false,
-    senha: DataTypes.STRING(10),
+    type: DataTypes.STRING,
   },
 });
 Usuario.beforeSave((usuario)=>{

@@ -44,6 +44,7 @@ class UsuarioController {
 
 
     } catch (error) {
+      console.log(error)
         response
         .status(500)
         .json({ mensagem: "Não foi possível cadastrar usuario!" });
