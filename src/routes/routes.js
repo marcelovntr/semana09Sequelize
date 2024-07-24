@@ -19,6 +19,7 @@ routes.use('/livros', auth, livrosRoutes)
 routes.use('/leitores', auth, leitoresRoutes)
 routes.use('/instrumentos', auth, instrumentosRoutes)
 routes.use('/auditorios', auth, auditoriosRoutes)
+routes.use('/permissoes', )
 
 
 
