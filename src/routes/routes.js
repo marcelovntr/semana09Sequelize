@@ -6,6 +6,7 @@ const auditoriosRoutes = require('./auditorios.routes')
 const usuariosRoutes = require('./usuario.routes')
 const LoginController = require('../controllers/LoginController')
 const auth = require('../middlewares/auth')
+const permissoesRoutes = require('./permissoes.routes')
 
 const routes = new Router()
 
@@ -19,7 +20,7 @@ routes.use('/livros', auth, livrosRoutes)
 routes.use('/leitores', auth, leitoresRoutes)
 routes.use('/instrumentos', auth, instrumentosRoutes)
 routes.use('/auditorios', auth, auditoriosRoutes)
-routes.use('/permissoes', )
+routes.use('/permissoes', auth, permissoesRoutes)
 
 
 

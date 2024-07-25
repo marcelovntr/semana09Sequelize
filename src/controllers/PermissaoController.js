@@ -1,5 +1,6 @@
-const { request, response } = require("express");
+
 const Permissao = require("../models/Permissao");
+const Usuario = require('../models/Usuario')
 
 class PermissaoController {
   async criar(request, response) {
@@ -27,16 +28,17 @@ class PermissaoController {
 
   async listar(request, response) {
     try {
-      const dados = request.query;
+      // const dados = request.query;
 
-      /*if (!dados) {
-      return response
-        .status(400)
-        .json({ mensagem: "é necessário fornecer um tipo de permissão para buscar!" });
-    }*/
-      const permisList = await Permissao.findAll({
+      // if (!dados) {
+      // return response
+      //   .status(400)
+      //   .json({ mensagem: "é necessário fornecer um tipo de permissão para buscar!" });
+    //}
+      const permisList = await Permissao.findAll(
+        /*{
         where: { tipoPermissao: dados.tipoPermissao },
-      });
+      }*/);
 
       if (permisList.length === 0) {
         return response
@@ -49,6 +51,7 @@ class PermissaoController {
   }*/
       response.json(permisList);
     } catch (error) {
+      console.log(error)
       response.status(500).json({ mensagem: "erro ao listar permissões!" });
     }
   }
@@ -64,14 +67,34 @@ class PermissaoController {
           .json({ mensagem: "permissão não encontrada!" });
       }
       await permissao.destroy();
-      response.status(204).json();
+      response.status(204).json()
     } catch (error) {
       console.log(error);
       response.status(500).json({ mensagem: "erro ao apagar permissão!" });
     }
   }
 
-  
+  async atribuirPermissao(request, response){
+    const { usuarioId, permissaoId } = request.body
+const usuario = await Usuario.findByPk(usuarioId)
+const permissao = await Permissao.findByPk(permissaoId)
+
+if(!usuario || !permissao){
+  response.status(404).json({mensagem: 'Usuário ou Permissão não encontrados'})
 }
+
+await usuario.addPermissoes(permissao)
+
+response.status(204).json()
+
+
+} catch (error) {
+  console.log(error)
+  response.status(500).json({ mensagem: "erro ao atribuir permissão!" });
+}
+  }
+
+  
+
 
 module.exports = new PermissaoController();

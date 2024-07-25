@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize");
 const connection = require("../database/connection");
 const { hashSync} = require('bcryptjs')
+const Permissao = require('./Permissao')
+const UsuarioPermissoes = require('./UsuarioPermissoes')
 
 const Usuario = connection.define("usuarios", { //<-- apenas subindo o código do modelo
   nome: {
@@ -18,6 +20,14 @@ const Usuario = connection.define("usuarios", { //<-- apenas subindo o código d
     type: DataTypes.STRING,
   },
 });
+
+
+Usuario.belongsToMany(Permissao, {
+  through: UsuarioPermissoes,
+  foreignKey: 'usuarioId',
+  otherKey: 'permissaoId'
+})
+
 Usuario.beforeSave((usuario)=>{
   usuario.senha = hashSync(usuario.senha, 10)
   return usuario

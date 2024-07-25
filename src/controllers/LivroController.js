@@ -48,7 +48,7 @@ class LivroController {
     
     try {
         const id = request.params.id
-        const livroFound = Livro.findByPk(id)
+        const livroFound = await Livro.findByPk(id)
         if(!livroFound){
             return response.status(404).json({mensagem:'O livro buscado não foi encontrado!'})
         }
